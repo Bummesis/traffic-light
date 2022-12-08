@@ -1,5 +1,5 @@
 {
-    "name": "traffic light",
+    "name": "traffic light - 32",
     "description": "",
     "dependencies": {
         "core": "*",
@@ -22,5 +22,5 @@
     "supportedTargets": [
         "microbit"
     ],
-    "preferredEditor": "pyprj"
+    "preferredEditor": "blocksprj"
 }

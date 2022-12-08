@@ -1,16 +1,56 @@
-input.onButtonPressed(Button.A, function on_button_pressed_a() {
-    pins.digitalWritePin(DigitalPin.P0, 1)
-    basic.pause(15000)
-    pins.digitalWritePin(DigitalPin.P0, 0)
-})
-while (true) {
-    pins.digitalWritePin(DigitalPin.P0, 1)
-    basic.pause(30000)
-    pins.digitalWritePin(DigitalPin.P0, 0)
+function green_light () {
     pins.digitalWritePin(DigitalPin.P1, 1)
-    basic.pause(30000)
+    basic.showNumber(5)
+    basic.pause(1000)
+    basic.showNumber(4)
+    basic.pause(1000)
+    basic.showNumber(3)
+    basic.pause(1000)
+    basic.showNumber(2)
+    basic.pause(1000)
+    basic.showNumber(1)
+    basic.pause(1000)
+    basic.showNumber(0)
     pins.digitalWritePin(DigitalPin.P1, 0)
+}
+function red_light () {
+    pins.digitalWritePin(DigitalPin.P0, 1)
+    basic.showNumber(8)
+    basic.pause(1000)
+    basic.showNumber(7)
+    basic.pause(1000)
+    basic.showNumber(6)
+    basic.pause(1000)
+    basic.showNumber(5)
+    basic.pause(1000)
+    basic.showNumber(4)
+    basic.pause(1000)
+    basic.showNumber(3)
+    basic.pause(1000)
+    basic.showNumber(2)
+    basic.pause(1000)
+    basic.showNumber(1)
+    basic.pause(1000)
+    basic.showNumber(0)
+    pins.digitalWritePin(DigitalPin.P0, 0)
+}
+function yellow_light () {
     pins.digitalWritePin(DigitalPin.P2, 1)
-    basic.pause(3000)
+    basic.showNumber(3)
+    basic.pause(1000)
+    basic.showNumber(2)
+    basic.pause(1000)
+    basic.showNumber(1)
+    basic.pause(1000)
+    basic.showNumber(0)
     pins.digitalWritePin(DigitalPin.P2, 0)
+}
+while (true) {
+    red_light()
+    green_light()
+    yellow_light()
+}
+while (input.buttonIsPressed(Button.A)) {
+    yellow_light()
+    red_light()
 }
