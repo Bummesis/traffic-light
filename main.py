@@ -1,80 +1,75 @@
-def green_light():
-    pins.digital_write_pin(DigitalPin.P1, 1)
-    basic.show_number(5)
-    basic.pause(1000)
-    basic.show_number(4)
-    basic.pause(1000)
-    basic.show_number(3)
-    basic.pause(1000)
-    basic.show_number(2)
-    basic.pause(1000)
-    basic.show_number(1)
-    basic.pause(1000)
-    basic.show_number(0)
-    pins.digital_write_pin(DigitalPin.P1, 0)
-
-def on_button_pressed_a():
-    pins.digital_write_pin(DigitalPin.P2, 0)
-    basic.show_number(3)
-    basic.pause(1000)
-    basic.show_number(2)
-    basic.pause(1000)
-    basic.show_number(1)
-    basic.pause(1000)
-    basic.show_number(0)
-    pins.digital_write_pin(DigitalPin.P2, 0)
+count_down_red = 0
+button_a = 0
+count_down_green = 0
+count_down_yellow = 0
+def red_light2():
+    global count_down_red, button_a
+    count_down_red = 8
     pins.digital_write_pin(DigitalPin.P0, 1)
-    basic.show_number(8)
-    basic.pause(1000)
-    basic.show_number(7)
-    basic.pause(1000)
-    basic.show_number(6)
-    basic.pause(1000)
-    basic.show_number(5)
-    basic.pause(1000)
-    basic.show_number(4)
-    basic.pause(1000)
-    basic.show_number(3)
-    basic.pause(1000)
-    basic.show_number(2)
-    basic.pause(1000)
-    basic.show_number(1)
-    basic.pause(1000)
-    basic.show_number(0)
+    for index in range(9):
+        basic.show_number(count_down_red)
+        basic.pause(10)
+        count_down_red += -1
     pins.digital_write_pin(DigitalPin.P0, 0)
-input.on_button_pressed(Button.A, on_button_pressed_a)
-
+    button_a = 0
+def traffic_light():
+    green_light()
+    yellow_light()
+    red_light()
+def green_light():
+    global count_down_green
+    count_down_green = 5
+    pins.digital_write_pin(DigitalPin.P1, 1)
+    for index2 in range(6):
+        if button_a:
+            break
+        basic.show_number(count_down_green)
+        basic.pause(10)
+        count_down_green += -1
+    pins.digital_write_pin(DigitalPin.P1, 0)
+def yellow_light2():
+    global count_down_yellow
+    count_down_yellow = 3
+    pins.digital_write_pin(DigitalPin.P2, 1)
+    for index3 in range(4):
+        basic.show_number(count_down_yellow)
+        basic.pause(10)
+        count_down_yellow += -1
+    pins.digital_write_pin(DigitalPin.P2, 0)
 def red_light():
+    global count_down_red
+    count_down_red = 8
     pins.digital_write_pin(DigitalPin.P0, 1)
-    basic.show_number(8)
-    basic.pause(1000)
-    basic.show_number(7)
-    basic.pause(1000)
-    basic.show_number(6)
-    basic.pause(1000)
-    basic.show_number(5)
-    basic.pause(1000)
-    basic.show_number(4)
-    basic.pause(1000)
-    basic.show_number(3)
-    basic.pause(1000)
-    basic.show_number(2)
-    basic.pause(1000)
-    basic.show_number(1)
-    basic.pause(1000)
-    basic.show_number(0)
+    for index4 in range(9):
+        if button_a:
+            break
+        basic.show_number(count_down_red)
+        basic.pause(10)
+        count_down_red += -1
     pins.digital_write_pin(DigitalPin.P0, 0)
 def yellow_light():
+    global count_down_yellow
+    count_down_yellow = 3
     pins.digital_write_pin(DigitalPin.P2, 1)
-    basic.show_number(3)
-    basic.pause(1000)
-    basic.show_number(2)
-    basic.pause(1000)
-    basic.show_number(1)
-    basic.pause(1000)
-    basic.show_number(0)
+    for index5 in range(4):
+        if button_a:
+            break
+        basic.show_number(count_down_yellow)
+        basic.pause(10)
+        count_down_yellow += -1
     pins.digital_write_pin(DigitalPin.P2, 0)
 
 def on_forever():
-    pass
+    global button_a
+    if input.button_is_pressed(Button.A):
+        button_a = 1
+        yellow_light2()
+        red_light2()
 basic.forever(on_forever)
+
+def on_forever2():
+    if button_a:
+        pass
+    else:
+        traffic_light()
+basic.forever(on_forever2)
