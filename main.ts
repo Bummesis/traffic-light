@@ -7,7 +7,7 @@ function red_light2 () {
     pins.digitalWritePin(DigitalPin.P0, 1)
     for (let index = 0; index < 9; index++) {
         basic.showNumber(count_down_red)
-        basic.pause(10)
+        basic.pause(1000)
         count_down_red += -1
     }
     pins.digitalWritePin(DigitalPin.P0, 0)
@@ -26,7 +26,7 @@ function green_light () {
             break;
         }
         basic.showNumber(count_down_green)
-        basic.pause(10)
+        basic.pause(1000)
         count_down_green += -1
     }
     pins.digitalWritePin(DigitalPin.P1, 0)
@@ -34,7 +34,7 @@ function green_light () {
 function yellow_light2 () {
     for (let index = 0; index < 4; index++) {
         pins.digitalWritePin(DigitalPin.P2, 1)
-        basic.pause(100)
+        basic.pause(1000)
         pins.digitalWritePin(DigitalPin.P2, 0)
     }
     for (let index = 0; index < 4; index++) {
@@ -63,7 +63,7 @@ function red_light () {
             break;
         }
         basic.showNumber(count_down_red)
-        basic.pause(10)
+        basic.pause(1000)
         count_down_red += -1
     }
     pins.digitalWritePin(DigitalPin.P0, 0)
@@ -76,7 +76,7 @@ function yellow_light () {
             break;
         }
         basic.showNumber(count_down_yellow)
-        basic.pause(10)
+        basic.pause(1000)
         count_down_yellow += -1
     }
     pins.digitalWritePin(DigitalPin.P2, 0)
